@@ -1,31 +1,35 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from "axios";
+import Vuex  from 'vuex'
+import axios from 'axios'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
+
+const state = {
+    banks: []
+}
+
+const getters = {
+
+}
+
+const actions = {
+    getBanks({ commit }) {
+        axios.get('https://boss.smartlink.id/salary/bank')
+        .then(response => {
+            commit('SET_BANKS', response.data)
+        })
+    }
+}
+
+const mutations = {
+    SET_BANKS(state, banks) {
+        state.banks = banks
+    }
+}
 
 export default new Vuex.Store({
-    state: {
-        banks: [],
-    },
-    getters: {
-        banks: state => {
-            return state.banks;
-        }
-    },
-    mutations: {
-        SET_ITEMS (state, banks) {
-            state.banks = banks
-        }
-    },
-    action: {
-        async loadBanks ({ commit }) {
-            try {
-                const response = await axios.get('https://boss.smartlink.id/salary/bank');
-                commit('SET_ITEMS', response.data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-    }
-}) 
+    state,
+    getters,
+    actions,
+    mutations
+})

@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <div>
       <ul v-for='bank in banks' :key='bank.id'>
-        <li>Bank Title: {{bank.title}}</li>
+        <li>Bank Title: {{bank.bank}}</li>
       </ul>
     </div>
   </div>
@@ -12,7 +12,7 @@
 <script>
 
 export default {
-  name: 'App',
+  name: 'HelloWorld',
   data () {
     return {
       msg: 'We are learning vuex!!'
