@@ -1,24 +1,33 @@
 # smartlink-fe-test
 
-## Project setup
+This repo is for doing Frontend React Online Test from DOT Indonesia (PT. Digdaya Olah Teknologi)<br />
+
+## Installation
+
+Clone the repo.
+
+```bash
+git clone https://github.com/gaisuke/smartlink-fe-test.git
 ```
+
+Install the package
+
+```bash
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+Run project 
+
+```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
+Compile and build for production
+
+```bash
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Tech Stack
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Vue
