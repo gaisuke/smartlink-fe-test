@@ -1,6 +1,6 @@
-# smartlink-fe-test
+# Smartlink Frontend Test
 
-This repo is for doing Frontend React Online Test from DOT Indonesia (PT. Digdaya Olah Teknologi)<br />
+This repo is for doing Frontend Test from Smartlink (PT. Ada Ide Langsung Jalan)<br />
 
 ## Installation
 
