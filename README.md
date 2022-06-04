@@ -34,3 +34,5 @@ npm run build
 - Vuex
 - Axios
 - Vue-router
+- Bootstrap-vue
+- Vue-toast-notification
