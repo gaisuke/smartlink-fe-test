@@ -33,3 +33,4 @@ npm run build
 - Vue
 - Vuex
 - Axios
+- Vue-router
