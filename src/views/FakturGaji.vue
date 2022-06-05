@@ -10,14 +10,13 @@
 
 <script>
 // @ is an alias to /src
-import Navbar from '@/components/Navbar.vue'
+// import Navbar from '@/components/Navbar.vue'
 import CardSalary from '@/components/CardSalary.vue'
 import axios from 'axios'
 
 export default {
   name: 'HomeView',
   components: {
-    Navbar,
     CardSalary,
   },
   data(){

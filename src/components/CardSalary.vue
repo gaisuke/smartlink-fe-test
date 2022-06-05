@@ -4,10 +4,11 @@
             <h4>Faktur Gaji</h4>
             <hr/>
             <h5>Nama: </h5>
-            <p> - </p>
+            <p>{{inquiry.nama_karyawan}}</p>
             <hr/>
             <b-row class="align-items-center">
-                <b-col class="ml-4">Masuk </b-col>
+                <b-col class="ml-4">Masuk</b-col>
+                <b-col class="ml-4">{{inquiry.total_kehadiran}}</b-col>
                 <b-col><b-button variant="link" v-b-modal.modalUbahKehadiran>Ubah Kehadiran</b-button></b-col>
             </b-row>
             <!-- modal ubah kehadiran -->
@@ -18,11 +19,11 @@
             <hr/>
             <b-row class="cardRow">
                 <b-col>
-                    <strong>{Gaji Pokok}</strong><br />
-                    <small class="text-muted">800.000 x 1 periode</small>
+                    <strong>{{inquiry.pengaturan_gaji[0].nama}}</strong><br />
+                    <small class="text-muted">{{inquiry.pengaturan_gaji[0].nominal}} x 1 {{inquiry.pengaturan_gaji[0].jenis}}</small>
                 </b-col>
                 <b-col >
-                    <strong>800.000</strong>
+                    <strong>{{gajiPokok = inquiry.pengaturan_gaji[0].nominal * inquiry.total_kehadiran}}</strong>
                     <b-button variant="link" v-b-modal.modalGajiPokok>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
@@ -31,12 +32,12 @@
             <!-- modal gaji pokok -->
             <modal-gaji-pokok title="Gaji Pokok" />
             <b-row class="cardRow">
-                <b-col >
-                    <strong>Uang Makan</strong><br />
-                    <small class="text-muted">10.000 x 22 kehadiran</small>
+                <b-col>
+                    <strong>{{inquiry.pengaturan_gaji[1].nama}}</strong><br />
+                    <small class="text-muted">{{inquiry.pengaturan_gaji[1].nominal}} x {{inquiry.total_kehadiran}} {{inquiry.pengaturan_gaji[1].jenis}}</small>
                 </b-col>
                 <b-col >
-                    <strong>220.000</strong>
+                    <strong>{{uangMakan = inquiry.pengaturan_gaji[1].nominal * inquiry.total_kehadiran}}</strong>
                     <b-button variant="link" v-b-modal.modalUangMakan>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
@@ -45,12 +46,12 @@
             <!-- modal uang makan -->
             <modal-uang-makan title="Uang Makan" />
             <b-row class="cardRow">
-                <b-col >
-                    <strong>Uang Absen</strong><br />
-                    <small class="text-muted">12.000 x 22 kehadiran</small>
+                <b-col>
+                    <strong>{{inquiry.pengaturan_gaji[2].nama}}</strong><br />
+                    <small class="text-muted">{{inquiry.pengaturan_gaji[2].nominal}} x {{inquiry.total_kehadiran}} {{inquiry.pengaturan_gaji[2].jenis}}</small>
                 </b-col>
                 <b-col >
-                    <strong>264.000</strong>
+                    <strong>{{uangAbsen = inquiry.pengaturan_gaji[2].nominal * inquiry.total_kehadiran}}</strong>
                     <b-button variant="link" v-b-modal.modalUangAbsen>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
@@ -59,12 +60,12 @@
             <!-- modal uang absen -->
             <modal-uang-absen title="Uang Absen" />
             <b-row class="cardRow">
-                <b-col >
-                    <strong>Uang Transport</strong><br />
-                    <small class="text-muted">15.000 x 22 kehadiran</small>
+                <b-col>
+                    <strong>{{inquiry.pengaturan_gaji[3].nama}}</strong><br />
+                    <small class="text-muted">{{inquiry.pengaturan_gaji[3].nominal}} x {{inquiry.total_kehadiran}} {{inquiry.pengaturan_gaji[3].jenis}}</small>
                 </b-col>
                 <b-col >
-                    <strong>330.000</strong>
+                    <strong>{{uangTransport = inquiry.pengaturan_gaji[3].nominal * inquiry.total_kehadiran}}</strong>
                     <b-button variant="link" v-b-modal.modalUangTransport>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
@@ -73,12 +74,12 @@
             <!-- modal uang transport -->
             <modal-uang-transport title="Uang Transport" />
             <b-row class="cardRow"> 
-                <b-col >
-                    <strong>Uang Snack</strong><br />
-                    <small class="text-muted">5.000 x 22 kehadiran</small>
+                <b-col>
+                    <strong>{{inquiry.pengaturan_gaji[4].nama}}</strong><br />
+                    <small class="text-muted">{{inquiry.pengaturan_gaji[4].nominal}} x {{inquiry.total_kehadiran}} {{inquiry.pengaturan_gaji[4].jenis}}</small>
                 </b-col>
                 <b-col >
-                    <strong>110.000</strong>
+                    <strong>{{uangSnack = inquiry.pengaturan_gaji[4].nominal * inquiry.total_kehadiran}}</strong>
                     <b-button variant="link" v-b-modal.modalUangSnack>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
@@ -93,7 +94,7 @@
                     <p></p>
                 </b-col>
                 <b-col >
-                    <h4>Rp. 2.524.000</h4>
+                    <h4>Rp. {{subTotalGaji = gajiPokok + uangMakan + uangAbsen + uangTransport + uangSnack}}</h4>
                 </b-col>
             </b-row>
         </div>
@@ -104,21 +105,21 @@
             <hr/>
             <b-row class="cardRow"> 
                 <b-col >
-                    <strong>Mencuci</strong><br />
-                    <small class="text-muted">100KG</small>
+                    <strong>{{inquiry.pengaturan_upah[0].nama}}</strong><br />
+                    <small class="text-muted">{{inquiry.pengerjaan_upah[1].nominal + inquiry.pengerjaan_upah[1].satuan}}</small>
                 </b-col>
                 <b-col >
-                    <strong class="mr-3">20.000</strong>
+                    <strong class="mr-3">{{totalUpah1 = inquiry.pengaturan_upah[0].nominal * inquiry.pengerjaan_upah[1].nominal}}</strong>
                     <b-icon-dash-circle></b-icon-dash-circle>
                 </b-col>
             </b-row>
             <b-row class="cardRow">
                 <b-col >
-                    <strong>Menyetrika</strong><br />
-                    <small class="text-muted">50KG</small>
+                    <strong>{{inquiry.pengaturan_upah[1].nama}}</strong><br />
+                    <small class="text-muted">{{inquiry.pengerjaan_upah[0].nominal + inquiry.pengerjaan_upah[0].satuan}}</small>
                 </b-col>
                 <b-col >
-                    <strong class="mr-3">80.000</strong>
+                    <strong class="mr-3">{{totalUpah2 = inquiry.pengaturan_upah[1].nominal * inquiry.pengerjaan_upah[0].nominal}}</strong>
                     <b-icon-dash-circle></b-icon-dash-circle>
                 </b-col>
             </b-row>
@@ -129,7 +130,7 @@
                     <p></p>
                 </b-col>
                 <b-col >
-                    <h4>Rp. 100.000</h4>
+                    <h4>Rp. {{subtotalUpah = totalUpah1 + totalUpah2}}</h4>
                 </b-col>
             </b-row>
         </div>
@@ -144,15 +145,15 @@
              <!-- modal tambah komisi -->
             <modal-tambah-komisi title="Tambah Komisi" /> 
             <b-row class="cardRow">
-                <b-col>
-                    <strong><p>Bonus Target 1</p></strong>
+                <!-- <b-col>
+                    <strong><p>-</p></strong>
                 </b-col>
                 <b-col >
-                    <strong>200.000</strong>
+                    <strong>0</strong>
                     <b-button variant="link" v-b-modal.modalBonusTarget>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
-                </b-col>
+                </b-col> -->
             </b-row>
             <!-- modal tambah bonus -->
             <modal-bonus-target title="Bonus Target 1" /> 
@@ -162,7 +163,7 @@
                     <h4>Subtotal Komisi</h4>
                 </b-col >
                 <b-col >
-                    <h4>Rp. 200.000</h4>
+                    <h4>Rp. 0</h4>
                 </b-col>
             </b-row>
             <hr />
@@ -171,7 +172,7 @@
                     <h4>Total Gaji Kotor</h4>
                 </b-col>
                 <b-col class="mb-3">
-                    <h4>Rp. 2.824.000</h4>
+                    <h4>Rp. {{gajiKotor = subTotalGaji + subtotalUpah}}</h4>
                 </b-col>
             </b-row>
         </div>
@@ -179,7 +180,7 @@
     <!-- Tanggungan -->
         <div class="cardSalary">
             <div class="titleCard">Tanggungan</div>
-            <small class="smallText">Karyawan ini memiliki tanggungan Rp. 570.000</small>
+            <!-- <small class="smallText">Karyawan ini memiliki tanggungan Rp. 570.000</small> -->
             <hr/>
              <div class="smallText">
                 <b-button variant="link" v-b-modal.modalTambahTanggungan><b-icon-plus-circle></b-icon-plus-circle>Tambah pembayaran tanggungan..</b-button> 
@@ -187,7 +188,7 @@
             <!-- modal tanggungan -->
             <modal-tambah-tanggungan title="Tambah Tanggungan" />
             <b-row class="cardRow">
-                <b-col >
+                <!-- <b-col >
                     <strong>Ganti Barang Hilang</strong><br />
                     <small class="text-muted">Baju yang hilang warna merah</small>
                 </b-col>
@@ -196,12 +197,12 @@
                     <b-button variant="link" v-b-modal.modalTanggunganHilang>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
-                </b-col>
+                </b-col> -->
             </b-row>
             <!-- modal tanggungan hilang -->
             <modal-tanggungan-hilang title="Tambah Tanggungan Hilang" />
             <b-row class="cardRow">
-                <b-col >
+                <!-- <b-col >
                     <strong>Denda Keterlambatan</strong><br />
                     <small class="text-muted">Karena terlambat 3 hari</small>
                 </b-col>
@@ -210,7 +211,7 @@
                     <b-button variant="link" v-b-modal.modalTanggunganDenda>
                     <b-icon-pencil-square></b-icon-pencil-square>
                     </b-button>
-                </b-col>
+                </b-col> -->
             </b-row>
             <!-- modal tanggungan denda -->
             <modal-tanggungan-denda title="Tambah Tanggungan Denda" />
@@ -221,7 +222,7 @@
                     <p></p>
                 </b-col>
                 <b-col >
-                    <h4 class="font-color-red">(-) Rp. 70.000</h4>
+                    <h4 class="font-color-red">Rp. 0</h4>
                 </b-col>
             </b-row>
         </div>
@@ -234,7 +235,7 @@
                     <p></p>
                 </b-col>
                 <b-col class="mt-3">
-                    <h4 class="font-color-red">Rp. 2.124.000</h4>
+                    <h4 class="font-color-red">Rp. {{gajiBersih = gajiKotor - 0}}</h4>
                 </b-col>
             </b-row>
             <small class="smallText">Nominal aktif yang diterima karyawan setelah ditambah komisi dikurangi pembayaran tanggungan (jika ada)</small>
@@ -260,6 +261,9 @@ export default {
   components: { ModalUbahKehadiran, ModalUangAbsen, ModalUangTransport, ModalGajiPokok, ModalUangMakan, ModalUangSnack, ModalTambahKomisi, ModalTambahTanggungan, ModalTanggunganHilang, ModalTanggunganDenda,  ModalBonusTarget},
     name: 'cardSalary',
     props: ['inquiry'],
+    created: function() {
+        console.log("ini didalam CardSalary => ", this.inquiry)
+    }
 
 }
 </script>

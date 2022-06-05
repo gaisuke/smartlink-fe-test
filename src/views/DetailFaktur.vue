@@ -8,13 +8,12 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
+// import Navbar from '@/components/Navbar.vue'
 import CardDetailFaktur from '@/components/CardDetailFaktur.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    Navbar,
     CardDetailFaktur
   }
 }
